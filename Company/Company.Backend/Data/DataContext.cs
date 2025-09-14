@@ -14,6 +14,6 @@ public class DataContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Employee>().HasIndex(x => x.Name);
+        modelBuilder.Entity<Employee>().HasIndex(x => x.FirstName);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -16,7 +17,11 @@ namespace Company.Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    HireDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -24,9 +29,9 @@ namespace Company.Backend.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_Name",
+                name: "IX_Employees_FirstName",
                 table: "Employees",
-                column: "Name");
+                column: "FirstName");
         }
 
         /// <inheritdoc />
