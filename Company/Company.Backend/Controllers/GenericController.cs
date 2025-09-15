@@ -1,7 +1,5 @@
 ﻿using Company.Backend.UnitsOfWork.Interfaces;
-using Company.Shared.Responses;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace Company.Backend.Controllers;
 
