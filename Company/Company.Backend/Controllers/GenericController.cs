@@ -1,5 +1,7 @@
 ﻿using Company.Backend.UnitsOfWork.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace Company.Backend.Controllers;
 
@@ -32,6 +34,25 @@ public class GenericController<T> : Controller where T : class
             return Ok(action.Result);
         }
         return NotFound();
+    }
+
+    [HttpGet("search")]
+    public async Task<IActionResult> Search([FromQuery] string? query)
+    {
+        if (string.IsNullOrWhiteSpace(query))
+        {
+            return BadRequest(new
+            {
+                message = "El campo de búsqueda es requerido."
+            });
+        }
+
+        var action = await _unitOfWork.SearchAsync(query);
+        if (action.WasSuccess)
+        {
+            return Ok(action.Result);
+        }
+        return BadRequest(new { message = action.Message });
     }
 
     [HttpPost]

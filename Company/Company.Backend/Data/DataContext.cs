@@ -15,5 +15,6 @@ public class DataContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Employee>().HasIndex(x => x.FirstName);
+        modelBuilder.Entity<Employee>().Property(x => x.Salary).HasColumnType("decimal(18,2)");
     }
 }

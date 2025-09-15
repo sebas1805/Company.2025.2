@@ -1,9 +1,7 @@
 ﻿using Company.Backend.Data;
 using Company.Backend.Repositories.Interfaces;
-using Company.Shared.Entities;
 using Company.Shared.Responses;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace Company.Backend.Repositories.Implementations;
 
@@ -83,6 +81,35 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         {
             WasSuccess = true,
             Result = row
+        };
+    }
+
+    public virtual async Task<ActionResponse<IEnumerable<T>>> SearchAsync(string query)
+    {
+        if (string.IsNullOrWhiteSpace(query))
+        {
+            return new ActionResponse<IEnumerable<T>>
+            {
+                Message = "Debe ingresar un texto de búsqueda."
+            };
+        }
+
+        var entities = await _context.Set<T>().Where(x =>
+            EF.Functions.Like(EF.Property<string>(x, "FirstName"), $"%{query}%") ||
+            EF.Functions.Like(EF.Property<string>(x, "LastName"), $"%{query}%")).ToListAsync();
+
+        if (!entities.Any())
+        {
+            return new ActionResponse<IEnumerable<T>>
+            {
+                Message = "No exiten registros con este criterio."
+            };
+        }
+
+        return new ActionResponse<IEnumerable<T>>
+        {
+            WasSuccess = true,
+            Result = entities
         };
     }
 
