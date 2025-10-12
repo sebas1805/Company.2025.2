@@ -1,5 +1,7 @@
 ﻿using Company.Backend.Data;
+using Company.Backend.Helpers;
 using Company.Backend.Repositories.Interfaces;
+using Company.Shared.DTOs;
 using Company.Shared.Responses;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +16,30 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         _context = context;
         _entity = _context.Set<T>();
+    }
+
+    public virtual async Task<ActionResponse<IEnumerable<T>>> GetAsync(PaginationDTO pagination)
+    {
+        var queryable = _entity.AsQueryable();
+
+        return new ActionResponse<IEnumerable<T>>
+        {
+            WasSuccess = true,
+            Result = await queryable
+                .Paginate(pagination)
+                .ToListAsync()
+        };
+    }
+
+    public virtual async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination)
+    {
+        var queryable = _entity.AsQueryable();
+        double count = await queryable.CountAsync();
+        return new ActionResponse<int>
+        {
+            WasSuccess = true,
+            Result = (int)count
+        };
     }
 
     public virtual async Task<ActionResponse<T>> AddAsync(T entity)
@@ -95,7 +121,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         }
 
         var entities = await _context.Set<T>().Where(x =>
-            EF.Functions.Like(EF.Property<string>(x, "FirstName"), $"%{query}%") ||
+            EF.Functions.Like(EF.Property<string>(x, "Name"), $"%{query}%") ||
             EF.Functions.Like(EF.Property<string>(x, "LastName"), $"%{query}%")).ToListAsync();
 
         if (!entities.Any())

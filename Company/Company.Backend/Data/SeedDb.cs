@@ -23,7 +23,7 @@ public class SeedDb
         {
             _context.Employees.Add(new Employee
             {
-                FirstName = "Julio",
+                Name = "Julio",
                 LastName = "Suarez",
                 IsActive = true,
                 HireDate = DateTime.UtcNow,
@@ -31,7 +31,7 @@ public class SeedDb
             });
             _context.Employees.Add(new Employee
             {
-                FirstName = "Juan",
+                Name = "Juan",
                 LastName = "Castro",
                 IsActive = true,
                 HireDate = DateTime.UtcNow,
@@ -39,7 +39,7 @@ public class SeedDb
             });
             _context.Employees.Add(new Employee
             {
-                FirstName = "Diana",
+                Name = "Diana",
                 LastName = "Jaramillo",
                 IsActive = true,
                 HireDate = DateTime.UtcNow,
@@ -47,7 +47,7 @@ public class SeedDb
             });
             _context.Employees.Add(new Employee
             {
-                FirstName = "Camila",
+                Name = "Camila",
                 LastName = "Rios",
                 IsActive = true,
                 HireDate = DateTime.UtcNow,
@@ -55,7 +55,7 @@ public class SeedDb
             });
             _context.Employees.Add(new Employee
             {
-                FirstName = "Sebastian",
+                Name = "Sebastian",
                 LastName = "Montoya",
                 IsActive = true,
                 HireDate = DateTime.UtcNow,
@@ -63,7 +63,7 @@ public class SeedDb
             });
             _context.Employees.Add(new Employee
             {
-                FirstName = "Julio",
+                Name = "Julio",
                 LastName = "Jaramillo",
                 IsActive = true,
                 HireDate = DateTime.UtcNow,
@@ -71,7 +71,7 @@ public class SeedDb
             });
             _context.Employees.Add(new Employee
             {
-                FirstName = "Andres",
+                Name = "Andres",
                 LastName = "Castro",
                 IsActive = true,
                 HireDate = DateTime.UtcNow,
@@ -79,7 +79,7 @@ public class SeedDb
             });
             _context.Employees.Add(new Employee
             {
-                FirstName = "Carolina",
+                Name = "Carolina",
                 LastName = "Torres",
                 IsActive = true,
                 HireDate = DateTime.UtcNow,
@@ -87,7 +87,7 @@ public class SeedDb
             });
             _context.Employees.Add(new Employee
             {
-                FirstName = "Mario",
+                Name = "Mario",
                 LastName = "Caceres",
                 IsActive = true,
                 HireDate = DateTime.UtcNow,
@@ -95,7 +95,7 @@ public class SeedDb
             });
             _context.Employees.Add(new Employee
             {
-                FirstName = "Juan",
+                Name = "Juan",
                 LastName = "Rivas",
                 IsActive = true,
                 HireDate = DateTime.UtcNow,

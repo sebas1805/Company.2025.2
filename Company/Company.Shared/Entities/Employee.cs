@@ -1,16 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Company.Shared.Interfaces;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Company.Shared.Entities;
 
-public class Employee
+public class Employee : IEntityWithName
 {
     public int Id { get; set; }
 
     [Display(Name = "Nombre")]
     [MaxLength(30, ErrorMessage = "El campo {0} no puede tener mas de {1} carácteres.")]
     [Required(ErrorMessage = "El campo {0} es obligatorio.")]
-    public string FirstName { get; set; } = null!;
+    public string Name { get; set; } = null!;
 
     [Display(Name = "Apellido")]
     [MaxLength(30, ErrorMessage = "El campo {0} no puede tener mas de {1} carácteres.")]

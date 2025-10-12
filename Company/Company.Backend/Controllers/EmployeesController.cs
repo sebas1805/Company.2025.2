@@ -1,8 +1,6 @@
-﻿using Company.Backend.Data;
-using Company.Backend.UnitsOfWork.Interfaces;
+﻿using Company.Backend.UnitsOfWork.Interfaces;
 using Company.Shared.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Company.Backend.Controllers;
 
@@ -10,7 +8,10 @@ namespace Company.Backend.Controllers;
 [Route("api/[controller]")]
 public class EmployeesController : GenericController<Employee>
 {
-    public EmployeesController(IGenericUnitOfWork<Employee> unitOfWork) : base(unitOfWork)
+    private readonly IEmployeeUnitOfWork _employeeUnitOfWork;
+
+    public EmployeesController(IGenericUnitOfWork<Employee> unitOfWork, IEmployeeUnitOfWork employeeUnitOfWork) : base(unitOfWork)
     {
+        _employeeUnitOfWork = employeeUnitOfWork;
     }
 }

@@ -1,10 +1,15 @@
-﻿using Company.Shared.Entities;
+﻿using Company.Shared.DTOs;
+using Company.Shared.Entities;
 using Company.Shared.Responses;
 
 namespace Company.Backend.UnitsOfWork.Interfaces;
 
 public interface IGenericUnitOfWork<T> where T : class
 {
+    Task<ActionResponse<IEnumerable<T>>> GetAsync(PaginationDTO pagination);
+
+    Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination);
+
     Task<ActionResponse<T>> GetAsync(int id);
 
     Task<ActionResponse<IEnumerable<T>>> SearchAsync(string query);
