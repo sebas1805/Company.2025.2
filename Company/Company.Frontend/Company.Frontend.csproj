@@ -14,11 +14,13 @@
 
 
   <ItemGroup>
-    <Folder Include="Components\Pages\Shared\" />
+    <ProjectReference Include="..\Company.Shared\Company.Shared.csproj" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <ProjectReference Include="..\Company.Shared\Company.Shared.csproj" />
+    <Content Update="wwwroot\Images\question2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
