@@ -75,22 +75,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
             };
         }
         _entity.Remove(row);
-
-        try
+        await _context.SaveChangesAsync();
+        return new ActionResponse<T>
         {
-            await _context.SaveChangesAsync();
-            return new ActionResponse<T>
-            {
-                WasSuccess = true,
-            };
-        }
-        catch
-        {
-            return new ActionResponse<T>
-            {
-                Message = "No se puede borrar por que tiene registros relacionados."
-            };
-        }
+            WasSuccess = true,
+        };
     }
 
     public virtual async Task<ActionResponse<T>> GetAsync(int id)

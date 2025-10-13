@@ -1,4 +1,5 @@
 ﻿using Company.Shared.DTOs;
+using Company.Shared.Entities;
 using Company.Shared.Responses;
 
 namespace Company.Backend.Repositories.Interfaces;
